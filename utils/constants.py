@@ -11,3 +11,9 @@ WFPICCS_COMMON_ABBREVIATIONS = dict(
     icu="intensive care unit",
     picu="pediatric intensive care unit",
 )
+
+WFPICCS_THRESHOLD_SCORE = dict(
+    threshold=1.073868191,
+    empty_abstract_threshold=1.05624354,
+    exclusion_threshold=1.042033879
+)

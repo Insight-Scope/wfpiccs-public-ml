@@ -1,10 +1,7 @@
 import re
 
 from nltk.corpus import stopwords
-from nltk.stem import WordNetLemmatizer
 from nltk.stem.porter import PorterStemmer
-
-from utils import WORD_TOKENIZERS
 
 
 class TextPreprocessor:
@@ -16,16 +13,7 @@ class TextPreprocessor:
         self.abbreviation_set = set()
 
         # set the word tokenizer type
-        if tokenizer == WORD_TOKENIZERS['lemma']['code']:
-            self.word_tokenizer = WordNetLemmatizer()
-        elif tokenizer == WORD_TOKENIZERS['stem']['code']:
-            self.word_tokenizer = PorterStemmer()
-
-    def get_tokenization_type_code(self):
-        if isinstance(self.word_tokenizer, WordNetLemmatizer):
-            return 'lemma'
-        elif isinstance(self.word_tokenizer, PorterStemmer):
-            return 'stem'
+        self.word_tokenizer = PorterStemmer()
 
     def clean_text(self, base_text, stop_word_list=None, apply_tokenization: bool = True):
         # if there is no base text, exit early
@@ -72,13 +60,7 @@ class TextPreprocessor:
         if not apply_tokenization:
             return ' '.join(tokens)
 
-        # apply the stemming or lemma word tokenizers
-        if isinstance(self.word_tokenizer, WordNetLemmatizer):
-            tokens = [self.word_tokenizer.lemmatize(word) for word in tokens]
-        elif isinstance(self.word_tokenizer, PorterStemmer):
-            tokens = [self.word_tokenizer.stem(word) for word in tokens]
-        else:
-            pass
-
+        # apply the stemming to the tokens and then join the tokens back into a string
+        tokens = [self.word_tokenizer.stem(word) for word in tokens]
         preprocessed_text = ' '.join(tokens)
         return preprocessed_text

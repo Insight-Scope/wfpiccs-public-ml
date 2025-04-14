@@ -1,1 +1,1 @@
-from model.tf_idf_embedding_model import load_embedding_model_from_pickle
+from model.tf_idf_embedding_model import apply_embedding_model_to_text
