@@ -1,5 +1,5 @@
-import pickle
 import os
+import pickle
 
 from scipy import spatial
 from sklearn.feature_extraction.text import TfidfVectorizer

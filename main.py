@@ -1,9 +1,10 @@
-from utils import read_excel_file_to_dataframe, WFPICCS_INCLUSION_CRITERIA_TA, WFPICCS_GOAL_OF_PROJECT
-from preprocessing import TextPreprocessor
-from postprocessing import DataCenter
-from model import load_embedding_model_from_pickle, apply_embedding_model_to_text
-from classifier import classify_papers
 import warnings
+
+from classifier import classify_papers
+from model import load_embedding_model_from_pickle, apply_embedding_model_to_text
+from postprocessing import DataCenter
+from preprocessing import TextPreprocessor
+from utils import read_excel_file_to_dataframe, WFPICCS_INCLUSION_CRITERIA_TA, WFPICCS_GOAL_OF_PROJECT
 
 warnings.filterwarnings("ignore", category=UserWarning)
 
@@ -11,7 +12,7 @@ warnings.filterwarnings("ignore", category=UserWarning)
 def main():
     # First get the file path of the excel file from the users
     # This should have the columns title and abstract
-    # We reccomend adding this file to the data folder
+    # We recommend adding this file to the data folder
     file_path = input("Enter the path to the Excel file: ")
     assessment_dataframe = read_excel_file_to_dataframe(file_path)
     
@@ -34,7 +35,7 @@ def main():
     # Create the project query (the search vector) based on the project settings
     cleaned_project_query = text_preprocessor.clean_text(' '.join([WFPICCS_GOAL_OF_PROJECT, WFPICCS_INCLUSION_CRITERIA_TA]))
 
-    # Load the prebuilt tf_idf model from the wfpiccs project and evaluate each citation
+    # Load the prebuilt tf_idf model from the WFPICCS project and evaluate each citation
     wfpiccs_tf_idf_model = load_embedding_model_from_pickle()
     assessment_dataframe['stem_tf_idf_cosine_similarity_score'] = assessment_dataframe['title_abstract'].apply(
         lambda citation: apply_embedding_model_to_text(
@@ -44,7 +45,7 @@ def main():
         )
     )
 
-    # With the evalauted citations we can now classify them as Retain (or No Assessment) or Exclude
+    # With the evaluated citations we can now classify them as Retain (or No Assessment) or Exclude
     assessment_dataframe["Reviewer Response"] = assessment_dataframe[['stem_tf_idf_cosine_similarity_score', 'empty_abstract']].apply(
         lambda citation: classify_papers(
             similarity_score=citation['stem_tf_idf_cosine_similarity_score'],

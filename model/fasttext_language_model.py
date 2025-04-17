@@ -1,5 +1,6 @@
-import fasttext
 import os
+
+import fasttext
 
 
 def load_fasttext_language_detection_model():

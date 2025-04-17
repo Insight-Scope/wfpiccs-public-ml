@@ -1,7 +1,8 @@
-import pandas
 import re
-import pycountry
+
 import fasttext
+import pandas
+import pycountry
 
 from model import load_fasttext_language_detection_model
 
