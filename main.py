@@ -24,9 +24,13 @@ def main():
     
     # Add features to the dataframe
     assessment_datacenter.add_features()
-    assessment_dataframe = assessment_datacenter.assessment_df
+    
+    # Filter out non-english citations from evaluation
+    assessment_datacenter.filter_non_english_citations()
+    print(f"Total papers after filtering non-english citations: {assessment_datacenter.assessment_df.shape[0]}")
     
     # Clean the text in the combined title and abstract column
+    assessment_dataframe = assessment_datacenter.assessment_df
     text_preprocessor = TextPreprocessor()
     assessment_dataframe["title_abstract"] = assessment_dataframe.apply(
         lambda row: text_preprocessor.clean_text(f"{row['title']} {row['abstract']}"), axis=1

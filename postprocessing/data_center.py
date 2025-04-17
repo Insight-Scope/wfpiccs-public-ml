@@ -36,6 +36,11 @@ class DataCenter:
                 & (self.assessment_df["abstract"] == "")
             )
         ]
+        
+    def filter_non_english_citations(self):
+        """Filter out non-english citations"""
+        # If the title and abstract is empty for this paper then remove it from evaluation using the empty_abstract df column
+        self.assessment_df = self.assessment_df.loc[~self.assessment_df["empty_abstract"]]
 
     def add_features(self):
         # Combine the title and abstract into a new column
