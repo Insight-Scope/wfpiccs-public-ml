@@ -13,7 +13,7 @@ class DataCenter:
     def __init__(self, assessment_df: pandas.DataFrame):
         # First check if the dataframe is empty and it has the columns title and abstract
         is_dataframe_valid = all(
-            col in self.assessment_df.columns for col in self.required_columns
+            col in assessment_df.columns for col in self.required_columns
         )
         if assessment_df.empty or not is_dataframe_valid:
             raise ValueError(
@@ -21,6 +21,8 @@ class DataCenter:
             )
 
         # If the dataframe is valid, set the assessment_df attribute
+        assessment_df['title'] = assessment_df['title'].astype(str)
+        assessment_df['abstract'] = assessment_df['abstract'].astype(str)
         self.assessment_df = assessment_df
 
     def filter_citations(self):
@@ -39,6 +41,7 @@ class DataCenter:
         self.assessment_df["title_abstract"] = self.assessment_df[
             ["title", "abstract"]
         ].agg(" ".join, axis=1)
+        self.assessment_df['title_abstract'] = self.assessment_df['title_abstract'].astype(str)
 
         # Check if the abstract is empty, if it is then set the empty_abstract column to True
         # These papers will be evalauted with a lower threshold

@@ -9,7 +9,7 @@ class TextPreprocessor:
     abbreviation_set = None
     normalization_list = None
 
-    def __init__(self, tokenizer):
+    def __init__(self):
         self.abbreviation_set = set()
 
         # set the word tokenizer type

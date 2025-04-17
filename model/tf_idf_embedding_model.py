@@ -1,4 +1,5 @@
 import pickle
+import os
 
 from scipy import spatial
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -7,7 +8,9 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 def load_embedding_model_from_pickle():
     """Load the embedding model from a pickle file stored in this GitHub Repo."""
     # Open the pickle file containing the TF-IDF embedding model (make sure to close before returning)
-    tf_idf_pickle_file = open('model/project_268_tf_idf_embedding_model.pickle', 'rb')
+    dir_name = os.path.dirname(__file__)
+    model_path = os.path.join(dir_name, "project_268_tf_idf_embedding_model.pkl")
+    tf_idf_pickle_file = open(model_path, 'rb')
 
     # Load the TF-IDF embedding model which is a pickled TfidfVectorizer
     tf_idf_embedding_model = pickle.load(tf_idf_pickle_file)
