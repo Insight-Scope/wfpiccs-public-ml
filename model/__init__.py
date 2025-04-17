@@ -1,1 +1,2 @@
 from model.tf_idf_embedding_model import apply_embedding_model_to_text
+from model.fasttext_language_model import load_fasttext_language_detection_model
