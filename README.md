@@ -1,10 +1,16 @@
-# WFPICCS ML Citation Classification
+# World Federation of Pediatric Intensive & Critical Care Societies (WFPICCS) ML Citation Classification
 
-This project performs text classification on assessment data using a combination of pre-trained fastText embeddings and machine learning models. Built with Python, the tool reads data from an Excel file, processes it using TF-IDF and fastText, and outputs classification results in a user-friendly format.
+## WFPICCS Evidence Hackathon: Engaging the conference community in collaborative knowledge synthesis
+
+This project performs text classification on assessment data using a combination of pre-trained fastText embeddings and
+machine learning models. Built with Python, the tool reads data from an Excel file, processes it using TF-IDF and
+fastText, and outputs classification results in a user-friendly format. Read more about the project
+here: [WFPICCS SR](https://insightscope.tech/preview_project/268)
 
 ## Built By
 
-This project was developed by **Algonquin College** in partnership with the **Children's Hospital of Eastern Ontario (CHEO), Ottawa**.
+This project was developed by **Algonquin College** in partnership with the **Children's Hospital of Eastern Ontario (
+C.H.E.O.), Ottawa**.
 
 ## Dependencies
 
@@ -22,7 +28,8 @@ This project uses the following Python packages:
 | scikit-learn   | 1.3.2   | [scikit-learn Docs](https://scikit-learn.org/stable/documentation.html) |
 | scipy          | 1.10.1  | [SciPy Docs](https://docs.scipy.org/doc/scipy/) |
 
-Additionally, the project uses the compressed  [fastText language identification model](https://fasttext.cc/docs/en/language-identification.html): `lid.176.ftz`
+Additionally, the project uses the
+compressed  [fastText language identification model](https://fasttext.cc/docs/en/language-identification.html): `lid.176.ftz`
 
 ## Quick Start
 
@@ -38,22 +45,32 @@ source venv/bin/activate  # On Windows use: venv\Scripts\activate
 ```
 
 ### 2. Install Requirements
+
 ```bash
 pip install -r requirements.txt # install required packages
 ```
 
 ### 3. Prepare Your Data
-- Place your assessments Excel file (.xlsx) into the data/ directory.
+
+- Place your assessments Excel file (.xlsx) into the data/ directory. The Excel sheet should be named 'Assessments'.
+- This Excel sheet should have at least two columns named 'title' and 'abstract'
+- It is recommended to use an ID column as well to easily share results for each paper
 
 ### 4. Run the Program
+
 ```bash
 # from the repository root
 python main.py
 ```
 
 ### 5. Provide File Path When Prompted and view the output
+
 - When prompted, input the full path to your Excel file
 - Your processed results will be saved automatically to the `data/output/` directory.
 
 ## Acknowledgements:
-This project was built by Algonquin College in partnership with the Children's Hospital of Eastern Ontario (CHEO), Ottawa. We gratefully acknowledge the contributions of all researchers, data scientists, and collaborators involved.
+
+The [insightScope](https://www.insightscope.ca) project is a collaborative effort led by Kevin Holmes
+from [Algonquin College's Social Innovation Lab](https://slidelab7.ca/), in partnership with students from Algonquin
+College and the Children's Hospital of Eastern Ontario (C.H.E.O.) in Ottawa. We gratefully acknowledge the contributions
+of all researchers, data scientists, and collaborators involved.
